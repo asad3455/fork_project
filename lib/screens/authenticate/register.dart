@@ -31,7 +31,7 @@ class _RegisterState extends State<Register> {
           backgroundColor: Colors.grey[400],
           //Removes drop shadow
           elevation: 0.0,
-          title: Text('Sign up to Asad Crew'),
+          title: const Text('Sign up to Asad Crew'),
           // Shows buttons on the top right of the app bar
           actions: <Widget>[
             TextButton.icon(
@@ -39,21 +39,36 @@ class _RegisterState extends State<Register> {
                   // this refers to state so we want to refer to widget
                   widget.toggleView();
                 },
-                icon: Icon(Icons.person),
-                label: Text("Sign in"))
+                icon: const Icon(Icons.person),
+                label: const Text("Sign in"))
           ],
         ),
         //Body of the screen - what is shown to the user
         body: Container(
             //Padding for the container - symmetric is top and bottom are the same, left and right are the same
-            padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
+            padding:
+                const EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
             child: Form(
               //Assigning key to the form - keeps track of the state of our form
               key: _formKey,
               child: Column(
                 children: <Widget>[
-                  SizedBox(height: 20.0),
+                  const SizedBox(height: 20.0),
                   TextFormField(
+                    //Decorate the text form with hints
+                    decoration: const InputDecoration(
+                        //Hint text on text box shows Email
+                        hintText: 'Email',
+                        //Fill colour of the form field should be White
+                        fillColor: Colors.white,
+                        filled: true,
+                        //Any enabled form field will have this border
+                        enabledBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.white, width: 2.0)),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.pink, width: 2.0))),
                     validator: (value) =>
                         value!.isEmpty ? "Enter an email" : null,
                     onChanged: (value) => {
@@ -62,8 +77,21 @@ class _RegisterState extends State<Register> {
                       )
                     },
                   ),
-                  SizedBox(height: 20.0),
+                  const SizedBox(height: 20.0),
                   TextFormField(
+                    decoration: const InputDecoration(
+                        //Hint text on text box shows Email
+                        hintText: 'Password',
+                        //Fill colour of the form field should be White
+                        fillColor: Colors.white,
+                        filled: true,
+                        //Any enabled form field will have this border
+                        enabledBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.white, width: 2.0)),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: Colors.pink, width: 2.0))),
                     //password so will not show
                     obscureText: true,
                     validator: (value) => value!.length < 6
@@ -75,7 +103,7 @@ class _RegisterState extends State<Register> {
                       )
                     },
                   ),
-                  SizedBox(height: 20.0),
+                  const SizedBox(height: 20.0),
                   ElevatedButton(
                       onPressed: () async {
                         //Only if validate returns null from validators in form will this be valid
@@ -90,11 +118,11 @@ class _RegisterState extends State<Register> {
                       },
                       style:
                           ElevatedButton.styleFrom(primary: Colors.pink[400]),
-                      child: Text(
+                      child: const Text(
                         'Register',
                         style: TextStyle(color: Colors.white),
                       )),
-                  SizedBox(
+                  const SizedBox(
                     height: 12.0,
                   ),
                   Text(error,
