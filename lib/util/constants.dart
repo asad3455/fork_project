@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 const textInputDecoration = InputDecoration(
-    //Hint text on text box shows Email
-    hintText: 'Password',
     //Fill colour of the form field should be White
     fillColor: Colors.white,
     filled: true,

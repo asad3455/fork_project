@@ -56,8 +56,8 @@ class _RegisterState extends State<Register> {
                 children: <Widget>[
                   const SizedBox(height: 20.0),
                   TextFormField(
-                    //Decorate the text form with hints
-                    decoration: textInputDecoration,
+                    //Decorate the text form with hints and focus styling
+                    decoration: textInputDecoration.copyWith(hintText: 'Email'),
                     validator: (value) =>
                         value!.isEmpty ? "Enter an email" : null,
                     onChanged: (value) => {
@@ -68,9 +68,12 @@ class _RegisterState extends State<Register> {
                   ),
                   const SizedBox(height: 20.0),
                   TextFormField(
-                    decoration: textInputDecoration,
-                    //password so will not show
+                    //Decorate the text form with hints and focus styling
+                    decoration:
+                        textInputDecoration.copyWith(hintText: 'Password'),
+                    //Password will not show
                     obscureText: true,
+                    //Validate password length and not empty
                     validator: (value) => value!.length < 6
                         ? "Enter a password with length of more than 6 "
                         : null,
