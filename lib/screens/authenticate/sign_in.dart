@@ -1,4 +1,5 @@
 import 'package:asad_crew/services/auth.dart';
+import 'package:asad_crew/util/constants.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
@@ -53,19 +54,7 @@ class _SignInState extends State<SignIn> {
                 children: <Widget>[
                   SizedBox(height: 20.0),
                   TextFormField(
-                    decoration: const InputDecoration(
-                        //Hint text on text box shows Email
-                        hintText: 'Email',
-                        //Fill colour of the form field should be White
-                        fillColor: Colors.white,
-                        filled: true,
-                        //Any enabled form field will have this border
-                        enabledBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.white, width: 2.0)),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.pink, width: 2.0))),
+                    decoration: textInputDecoration,
                     validator: (value) =>
                         value!.isEmpty ? "Enter an email" : null,
                     onChanged: (value) => {
@@ -76,19 +65,7 @@ class _SignInState extends State<SignIn> {
                   ),
                   SizedBox(height: 20.0),
                   TextFormField(
-                    decoration: const InputDecoration(
-                        //Hint text on text box shows Email
-                        hintText: 'Password',
-                        //Fill colour of the form field should be White
-                        fillColor: Colors.white,
-                        filled: true,
-                        //Any enabled form field will have this border
-                        enabledBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.white, width: 2.0)),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide:
-                                BorderSide(color: Colors.pink, width: 2.0))),
+                    decoration: textInputDecoration,
                     //password so will not show
                     obscureText: true,
                     validator: (value) => value!.length < 6
