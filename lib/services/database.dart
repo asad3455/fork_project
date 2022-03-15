@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DatabaseService {
-  final String uid;
-  DatabaseService({required this.uid});
+  final String? uid;
+  DatabaseService({this.uid});
   //Reference to collection from the database
   //Can use this to add new documents
   final CollectionReference asadCrewCollection =
@@ -16,5 +16,11 @@ class DatabaseService {
       'name': name,
       'strength': strength,
     });
+  }
+
+  //Get crew stream
+  //Gets a snapshot of the current state of the database when document changes
+  Stream<QuerySnapshot?> get crews {
+    return asadCrewCollection.snapshots();
   }
 }
