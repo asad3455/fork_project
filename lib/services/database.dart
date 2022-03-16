@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:asad_crew/models/crew.dart';
 
 class DatabaseService {
   final String? uid;
@@ -18,9 +19,24 @@ class DatabaseService {
     });
   }
 
+  //Crew from snapshot
+  List<Crew> _crewListFromSnapshot(QuerySnapshot? snapshot) {
+    try {
+      return snapshot!.docs.map((doc) {
+        return Crew(
+            name: doc.get('name') ?? "",
+            sugars: doc.get('sugars') ?? "0",
+            strength: doc.get('strength') ?? 0);
+      }).toList();
+    } catch (e) {
+      print(e.toString());
+      return [];
+    }
+  }
+
   //Get crew stream
   //Gets a snapshot of the current state of the database when document changes
-  Stream<QuerySnapshot?> get crews {
-    return asadCrewCollection.snapshots();
+  Stream<List<Crew>?> get crews {
+    return asadCrewCollection.snapshots().map(_crewListFromSnapshot);
   }
 }

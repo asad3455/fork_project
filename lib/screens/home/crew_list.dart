@@ -1,6 +1,6 @@
 //Widget to cycle through crews
+import 'package:asad_crew/models/crew.dart';
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
 
 class CrewList extends StatefulWidget {
@@ -14,12 +14,14 @@ class _CrewListState extends State<CrewList> {
   @override
   Widget build(BuildContext context) {
     //Access data from the stream
-    final crews = Provider.of<QuerySnapshot?>(context);
+    final crews = Provider.of<List<Crew>?>(context);
     //Make sure snapshot is not null
     if (crews == null) return CircularProgressIndicator();
-    for (var doc in crews.docs) {
-      print(doc.data());
-    }
+    crews.forEach((crewItem) {
+      print(crewItem.name);
+      print(crewItem.sugars);
+      print(crewItem.strength);
+    });
     return Container();
   }
 }
