@@ -1,5 +1,6 @@
 //Widget to cycle through crews
 import 'package:asad_crew/models/crew.dart';
+import 'package:asad_crew/screens/home/crew_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -15,13 +16,12 @@ class _CrewListState extends State<CrewList> {
   Widget build(BuildContext context) {
     //Access data from the stream
     final crews = Provider.of<List<Crew>?>(context);
-    //Make sure snapshot is not null
-    if (crews == null) return CircularProgressIndicator();
-    crews.forEach((crewItem) {
-      print(crewItem.name);
-      print(crewItem.sugars);
-      print(crewItem.strength);
-    });
-    return Container();
+    return ListView.builder(
+      itemCount: crews!.length,
+      //0 index
+      itemBuilder: (context, index) {
+        return CrewTile(crew: crews[index]);
+      },
+    );
   }
 }
