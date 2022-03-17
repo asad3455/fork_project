@@ -1,5 +1,6 @@
 import 'package:asad_crew/models/crew.dart';
 import 'package:asad_crew/screens/home/crew_list.dart';
+import 'package:asad_crew/screens/home/settings_form.dart';
 import 'package:asad_crew/services/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class Home extends StatelessWidget {
           builder: (context) {
             return Container(
               padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
-              child: Text("Bottom sheet"),
+              child: SettingsForm(),
             );
           });
     }
