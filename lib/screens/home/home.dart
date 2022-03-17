@@ -12,6 +12,18 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    void _showSettingsPanel() {
+      //bottom sheet function from flutter
+      showModalBottomSheet(
+          context: context,
+          builder: (context) {
+            return Container(
+              padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
+              child: Text("Bottom sheet"),
+            );
+          });
+    }
+
     final AuthService _auth = AuthService();
     //Setting up stream
     //Value of the stream is the crew provider
@@ -34,7 +46,12 @@ class Home extends StatelessWidget {
                 await _auth.signOut();
               },
               label: Text("Log out"),
-            )
+            ),
+            TextButton.icon(
+              icon: Icon(Icons.settings),
+              label: Text("Settings"),
+              onPressed: () => _showSettingsPanel(),
+            ),
           ],
         ),
         body: CrewList(),
