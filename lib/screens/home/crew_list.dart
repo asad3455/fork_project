@@ -16,12 +16,16 @@ class _CrewListState extends State<CrewList> {
   Widget build(BuildContext context) {
     //Access data from the stream
     final crews = Provider.of<List<Crew>?>(context);
-    return ListView.builder(
-      itemCount: crews!.length,
-      //0 index
-      itemBuilder: (context, index) {
-        return CrewTile(crew: crews[index]);
-      },
-    );
+    if (crews != null) {
+      return ListView.builder(
+        itemCount: crews.length,
+        //0 index
+        itemBuilder: (context, index) {
+          return CrewTile(crew: crews[index]);
+        },
+      );
+    } else {
+      return CircularProgressIndicator();
+    }
   }
 }
