@@ -1,10 +1,11 @@
+import 'package:asad_crew/models/recipe.dart';
 import 'package:flutter/material.dart';
 import 'package:asad_crew/models/crew.dart';
 
-class CrewTile extends StatelessWidget {
+class RecipeTile extends StatelessWidget {
   // const CrewTile({Key? key}) : super(key: key);
-  const CrewTile({required this.crew});
-  final Crew crew;
+  const RecipeTile({required this.recipe});
+  final Recipe recipe;
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +16,9 @@ class CrewTile extends StatelessWidget {
         child: ListTile(
           //image on left
           leading: CircleAvatar(
-              radius: 25.0, backgroundColor: Colors.grey[crew.strength]),
-          title: Text(crew.name),
-          subtitle: Text('Takes ${crew.sugars} sugar(s)'),
+              radius: 25.0, backgroundColor: Colors.grey[recipe.difficulty]),
+          title: Text(recipe.name),
+          subtitle: Text('Serves ${recipe.servings} people(s)'),
         ),
       ),
     );
