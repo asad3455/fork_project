@@ -9,6 +9,8 @@ class DatabaseService {
   //Can use this to add new documents
   final CollectionReference asadCrewCollection =
       FirebaseFirestore.instance.collection("crews");
+  final CollectionReference recipeCollection =
+      FirebaseFirestore.instance.collection("recipes");
 
   Future updateUserData(String sugars, String name, int strength) async {
     //If this document is not found firestore will create it for us
@@ -17,6 +19,20 @@ class DatabaseService {
       'sugars': sugars,
       'name': name,
       'strength': strength,
+    });
+  }
+
+  //Update recipe data
+  Future addRecipe(String name, int difficulty, int servings,
+      String ingredients, String instructions) async {
+    //If this document is not found firestore will create it for us
+    //When user signs up and uid of the user is passed in that document is tied to that user
+    return await recipeCollection.add({
+      'name': name,
+      'difficulty': difficulty,
+      'servings': servings,
+      'ingredients': ingredients,
+      'instructions': instructions,
     });
   }
 

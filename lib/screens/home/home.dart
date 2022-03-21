@@ -1,5 +1,6 @@
 import 'package:asad_crew/models/crew.dart';
 import 'package:asad_crew/screens/home/crew_list.dart';
+import 'package:asad_crew/screens/home/recipe_add.dart';
 import 'package:asad_crew/screens/home/settings_form.dart';
 import 'package:asad_crew/services/auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -52,6 +53,14 @@ class Home extends StatelessWidget {
               icon: Icon(Icons.settings),
               label: Text("Settings"),
               onPressed: () => _showSettingsPanel(),
+            ),
+            TextButton.icon(
+              icon: Icon(Icons.food_bank),
+              label: Text("Add Recipe"),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AddRecipe()));
+              },
             ),
           ],
         ),
