@@ -12,6 +12,11 @@ class Recipe {
   final String ingredients;
   final String instructions;
 
-  Recipe(this.uid, this.name, this.difficulty, this.servings, this.ingredients,
-      this.instructions);
+  Recipe(
+      {this.uid,
+      required this.name,
+      required this.difficulty,
+      required this.servings,
+      required this.ingredients,
+      required this.instructions});
 }
