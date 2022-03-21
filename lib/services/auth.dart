@@ -1,4 +1,5 @@
 import 'package:asad_crew/models/user.dart';
+import 'package:asad_crew/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {
@@ -49,6 +50,8 @@ class AuthService {
       UserCredential userCredential = await _auth
           .createUserWithEmailAndPassword(email: email, password: password);
       User user = userCredential.user!;
+      //Create a new document from the UID
+      await DatabaseService(uid: user.uid).updateUserData('0', 'new user', 100);
       return _userFromFB(user);
     } catch (e) {
       print(e.toString());
