@@ -133,12 +133,12 @@ class _AddRecipeState extends State<AddRecipe> {
                             if (_formKey.currentState!.validate()) {
                               //not sure if null or user so dynamic
                               Recipe recipe = Recipe(
-                                  null,
-                                  recipe_name,
-                                  int.parse(recipe_difficulty),
-                                  int.parse(recipe_servings),
-                                  recipe_ingredients,
-                                  recipe_instructions);
+                                  uid: null,
+                                  name: recipe_name,
+                                  difficulty: int.parse(recipe_difficulty),
+                                  servings: int.parse(recipe_servings),
+                                  ingredients: recipe_ingredients,
+                                  instructions: recipe_instructions);
                               dynamic result =
                                   await _recipeService.addRecipe(recipe);
                               if (result == null) {
