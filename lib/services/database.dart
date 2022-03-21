@@ -1,3 +1,4 @@
+import 'package:asad_crew/models/recipe.dart';
 import 'package:asad_crew/models/user.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:asad_crew/models/crew.dart';
@@ -51,6 +52,25 @@ class DatabaseService {
     }
   }
 
+  //Crew from snapshot
+  List<Recipe> _recipeListFromSnapshot(QuerySnapshot? snapshot) {
+    try {
+      return snapshot!.docs.map((doc) {
+        return Recipe(
+          uid: doc.id,
+          name: doc.get('name') ?? "",
+          servings: doc.get('servings') ?? 0,
+          difficulty: doc.get('difficulty') ?? 0,
+          instructions: doc.get('instructions') ?? "",
+          ingredients: doc.get('ingredients') ?? "",
+        );
+      }).toList();
+    } catch (e) {
+      print(e.toString());
+      return [];
+    }
+  }
+
   //UserData from snapshot
   UserData _userDataFromSnapshot(DocumentSnapshot? snapshot) {
     return UserData(
@@ -64,6 +84,12 @@ class DatabaseService {
   //Gets a snapshot of the current state of the database when document changes
   Stream<List<Crew>?> get crews {
     return asadCrewCollection.snapshots().map(_crewListFromSnapshot);
+  }
+
+  //Get crew stream
+  //Gets a snapshot of the current state of the database when document changes
+  Stream<List<Recipe>?> get recipes {
+    return recipeCollection.snapshots().map(_recipeListFromSnapshot);
   }
 
   //get user doc stream
